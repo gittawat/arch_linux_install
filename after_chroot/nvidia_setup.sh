@@ -1,3 +1,6 @@
+#!/bin/bash
+
+# using NVIDIA as my primary GPU
 cat << EOF > /etc/X11/xorg.conf.d/20-nvidia.conf
 Section "ServerLayout"
     Identifier "layout"
