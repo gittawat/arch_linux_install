@@ -1,6 +1,13 @@
 #!/bin/bash
 
-reflector -c TH,SG --save /etc/pacman.d/mirrorlist
+hostname=$(cat /etc/hostname)
+
+if [ "$hostname" = "archiso" ]; then 
+	reflector -c TH,SG --save /etc/pacman.d/mirrorlist
+else
+	echo "please run this on official archiso"
+	exit 1
+fi
 
 if mountpoint -q /mnt; then
 	echo "/mnt/ is currently a mountpoint"

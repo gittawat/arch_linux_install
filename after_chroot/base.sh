@@ -45,7 +45,7 @@ EOF
 mkinitcpio -p linux
 
 pacman -S --noconfirm sbctl efibootmgr 
-pacman -S --noconfirm linux-headers git neovim dialog base-devel 
+pacman -S --noconfirm linux-headers git dialog base-devel 
 
 pacman -S --noconfirm \
 	networkmanager \
@@ -69,7 +69,7 @@ pacman -S --noconfirm alsa-utils \
 	sof-firmware gst-plugin-pipewire \
 	libpulse wireplumber 
 
-pacman -S xdg-utils neovim firefox
+pacman -S --noconfirm xdg-utils neovim firefox
 
 #echo root:password | chpasswd
 
