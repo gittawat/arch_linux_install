@@ -1,5 +1,8 @@
 #!/bin/bash
 
+timedatectl set-ntp true
+hwclock --systohc
+
 # using NVIDIA as my primary GPU
 cat << EOF > /etc/X11/xorg.conf.d/20-nvidia.conf
 Section "ServerLayout"
@@ -32,9 +35,7 @@ Section "Screen"
 EndSection
 EOF
 
-cat << EOF > /usr/share/sddm/scripts/Xsetup
-#!/bin/sh
-# Xsetup - run as root before the login dialog appears
+cat << EOF >> /usr/share/sddm/scripts/Xsetup
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
 EOF

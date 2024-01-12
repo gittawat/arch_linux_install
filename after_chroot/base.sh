@@ -69,16 +69,14 @@ pacman -S --noconfirm alsa-utils \
 	sof-firmware gst-plugin-pipewire \
 	libpulse wireplumber 
 
-pacman -S xdg-utils neovim
+pacman -S xdg-utils neovim firefox
 
-#'pipewire', 'pipewire-alsa', 'pipewire-jack', 'pipewire-pulse', 'gst-plugin-pipewire', 'libpulse', 'wireplumber', '--noconfirm'
-# temp firewalld openssh avahi cups xdg-user-dirs
 #echo root:password | chpasswd
 
 useradd -m -G wheel $inputUsername
-echo $inputUsername:password | chpasswd
+echo $inputUsername:$password | chpasswd
 usermod -a -G uucp $inputUsername
-usermod -a -G libvirt $inputUsername
+#usermod -a -G libvirt $inputUsername
 
 systemctl enable NetworkManager
 systemctl enable reflector.timer
@@ -87,6 +85,6 @@ systemctl enable fstrim.timer
 systemctl enable firewalld
 su - $inputUsername -c "systemctl enable --user pipewire-pulse.service"
 
-echo "gttwt ALL=(ALL) ALL" > /etc/sudoers.d/00_gttwt
+echo "$inputUsername ALL=(ALL) ALL" > /etc/sudoers.d/00_$inputUsername
 
 printf "\e[1;32mbase installation Done!\e[0m\n"

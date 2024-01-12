@@ -1,5 +1,6 @@
 #!/bin/bash
 
+reflector -c TH,SG --save /etc/pacman.d/mirrorlist
 
 if mountpoint -q /mnt; then
 	echo "/mnt/ is currently a mountpoint"
@@ -17,6 +18,7 @@ pacstrap -C /etc/pacman.conf -K /mnt \
 	--noconfirm
 
 genfstab -U /mnt > /mnt/etc/fstab
+
 
 #chroot /mnt /bin/bash -c "mkinitcpio -p linux"
 cp -r ./after_chroot/ /mnt/root/
