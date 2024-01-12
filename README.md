@@ -1,1 +1,1 @@
-gittawat's arch linux install scicpt
+gittawat's arch linux install script
