@@ -1,6 +1,5 @@
 #!/bin/bash
 
-reflector -c TH,SG --save /etc/pacman.d/mirrorlist
 
 if mountpoint -q /mnt; then
 	echo "/mnt/ is currently a mountpoint"

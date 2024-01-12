@@ -1,5 +1,7 @@
 #!/bin/bash
 
+reflector -c TH,SG --save /mnt/etc/pacman.d/mirrorlist
+
 timedatectl set-ntp true
 hwclock --systohc
 
