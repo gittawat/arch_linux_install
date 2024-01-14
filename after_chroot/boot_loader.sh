@@ -9,24 +9,21 @@ fi
 printf "\e[1;32m installing boot loader\e[0m\n"
 bootctl install --esp-path=/efi
 
-devPath="$1"
+cryptDevPath="$1"
 
-echo "You entered: $devPath"
+echo "You entered: $cryptDevPath"
 
-
-# Run blkid and store the output in a variable
-blkid_output=$(blkid $devPath)
 
 # Extract PARTUUID using awk
-root_partuuid=$(echo "$blkid_output" | awk -F'PARTUUID=' '{print $2}' | awk -F'"' '{print $2}')
+cryptroot_uuid=$(blkid -s UUID -o value $cryptDevPath)
 
 # Print the extracted PARTUUID
-echo "PARTUUID: $root_partuuid"
+echo "UUID: $cryptroot_uuid"
 
 
 #initrd=\intel-ucode.img initrd=\initramfs-linux.img cryptdevice=PARTUUID=$root_partuuid:luksdev root=/dev/mapper/luksdev rootflags=subvol=@root,rw rootfstype=btrfs
 cat << EOF > /etc/kernel/cmdline
-cryptdevice=PARTUUID=$root_partuuid:luksdev root=/dev/mapper/luksdev rootflags=subvol=@root,rw rootfstype=btrfs
+initrd=\intel-ucode.img initrd=\initramfs-linux.img rd.luks.uuid=$cryptroot_uuid:decryptroot root=/dev/mapper/luksdev rootflags=subvol=@root,rw rootfstype=btrfs
 EOF
 
 sbctl bundle \

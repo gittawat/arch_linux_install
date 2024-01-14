@@ -3,7 +3,7 @@
 hostname=$(cat /etc/hostname)
 #hostname="archiso"
 if [ "$hostname" = "archiso" ]; then 
-	reflector -c TH,SG --save /etc/pacman.d/mirrorlist
+	reflector -c TH,SG --sort rate --save /etc/pacman.d/mirrorlist
 else
 	echo "please run this on official archiso"
 	exit 1
