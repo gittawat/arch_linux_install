@@ -1,7 +1,7 @@
 #!/bin/bash
 
 hostname=$(cat /etc/hostname)
-
+#hostname="archiso"
 if [ "$hostname" = "archiso" ]; then 
 	reflector -c TH,SG --save /etc/pacman.d/mirrorlist
 else
@@ -24,7 +24,7 @@ pacstrap -C /etc/pacman.conf -K /mnt \
 	intel-ucode \
 	--noconfirm
 
-genfstab -U /mnt > /mnt/etc/fstab
+genfstab -U /mnt >> /mnt/etc/fstab
 
 
 #chroot /mnt /bin/bash -c "mkinitcpio -p linux"
