@@ -39,7 +39,7 @@ MODULES=()
 BINARIES=()
 COMPRESSION="zstd"
 #FILES=(/crypto_keyfile.bin)
-HOOKS=(base udev autodetect keyboard keymap modconf block encrypt filesystems fsck)
+HOOKS=(base systemd autodetect keyboard keymap modconf block btrfs sd-encrypt filesystems fsck)
 EOF
 
 mkinitcpio -p linux
