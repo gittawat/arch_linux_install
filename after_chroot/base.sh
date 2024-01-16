@@ -22,7 +22,7 @@ else
 fi
 
 echo "en_SG.UTF-8 UTF-8" > /etc/locale.gen
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
+echo "LANG=en_SG.UTF-8" > /etc/locale.conf
 echo "KEYMAP=us" > /etc/vconsole.conf
 echo "$inputHostname" > /etc/hostname
 echo "127.0.0.1 localhost" > /etc/hosts
