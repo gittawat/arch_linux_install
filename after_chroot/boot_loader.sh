@@ -15,7 +15,7 @@ echo "You entered: $cryptDevPath"
 
 
 # Extract PARTUUID using awk
-cryptroot_uuid=$(blkid -s UUID -o value $cryptDevPath)
+cryptroot_uuid=$(blkid -s UUID -o value "$cryptDevPath")
 
 # Print the extracted PARTUUID
 echo "UUID: $cryptroot_uuid"
@@ -23,7 +23,7 @@ echo "UUID: $cryptroot_uuid"
 
 #initrd=\intel-ucode.img initrd=\initramfs-linux.img cryptdevice=PARTUUID=$root_partuuid:luksdev root=/dev/mapper/luksdev rootflags=subvol=@root,rw rootfstype=btrfs
 cat << EOF > /etc/kernel/cmdline
-initrd=\intel-ucode.img initrd=\initramfs-linux.img rd.luks.uuid=$cryptroot_uuid:decryptroot root=/dev/mapper/luksdev rootflags=subvol=@root,rw rootfstype=btrfs
+rd.luks.uuid=$cryptroot_uuid root=/dev/mapper/luks-$cryptroot_uuid rootfstype=btrfs rootflags=subvol=@root,rw
 EOF
 
 sbctl bundle \
