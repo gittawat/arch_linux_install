@@ -67,7 +67,7 @@ pacman -S --noconfirm alsa-utils \
 	pipewire pipewire-alsa \
 	pipewire-pulse pipewire-jack \
 	sof-firmware gst-plugin-pipewire \
-	libpulse wireplumber 
+	libpulse wireplumber
 
 pacman -S --noconfirm xdg-utils neovim firefox
 

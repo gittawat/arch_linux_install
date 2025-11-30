@@ -1,0 +1,59 @@
+[install_path] #mountpoint
+root_path = '/mnt'    #path to mounted root filesystem for install
+efi_path = '/mnt/efi'
+
+[reflector]
+countries = ['TH', 'SG']
+
+[settings]
+hostname = 'arch'
+username = 'gttwt'
+root_login = false # "false" mean wont ask for root password
+
+[settings.locale]
+locale_gen = "en_SG.UTF-8 UTF-8"
+locale_conf = "LANG=en_SG.UTF-8"
+vconsole_conf = "KEYMAP=us"
+localtime = 'Asia/Bangkok'
+
+[package]
+base = ['base', 'linux-lts', 'linux-lts-headers', 'linux-firmware']
+base_ucode = ['amd_ucode']
+network = [
+	'network-manager-applet',
+	'iwd',
+	'wireless_tools',
+	'smartmontools',
+	'wpa_supplicant',
+	'firewalld',
+	'inetutils',
+	'networkmanager',
+	'xdg-utils'
+]
+audio = [
+	'sof-firmware',
+	'alsa-utils',
+	'pipewire',
+	'pipewire-alsa',
+	'pipewire-pulse',
+	'pipewire-jack',
+	'gst-plugin-pipewire',
+	'libpulse wireplumber',
+]
+desktop = [
+	'plasma-meta',
+	'konsole',
+	'kate',
+	'dolphin',
+	'ark',
+	'plasma-workspace',
+]
+nvidia_open = [
+	'xorg-server',
+	'xorg-xinit',
+	'nvidia-open-dkms',
+	'dkms',
+	'libva-nvidia-driver',
+]
+utils = ['rsync', 'reflector']
+additional = ['neovim', 'firefox', 'zsh', 'grml-zsh-config']
