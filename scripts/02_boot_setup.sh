@@ -40,7 +40,7 @@ EOF
 ROOT_LUKS_UUID=$(blkid -s UUID -o value "$(cryptsetup status "$(basename "$(findmnt -nvo SOURCE /)")" | awk '/device:/ {print $2}')")
 
 cat << EOF > /etc/crypttab.initramfs
-#unlocked_root UUID=$ROOT_LUKS_UUID none timeout=180,no-read-workqueue,no-write-workqueue
+unlocked_root UUID=$ROOT_LUKS_UUID none timeout=180,no-read-workqueue,no-write-workqueue
 EOF
 
 mkdir /efi/EFI
