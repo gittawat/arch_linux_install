@@ -1,4 +1,3 @@
-
 additional=('rsync'
 	'reflector'
 	'sbctl'
@@ -7,5 +6,7 @@ additional=('rsync'
 	'firefox'
 	'zsh'
 	'grml-zsh-config'
+	'reflector'
 )
 pacman --noconfirm -S "${additional[@]}"
+systemctl enable reflector.timer

@@ -41,4 +41,7 @@ cat << EOF > /etc/crypttab.initramfs
 unlocked_root UUID=$(findmnt -n -o UUID /) none timeout=180,no-read-workqueue,no-write-workqueue
 EOF
 
+mkdir /efi/EFI
+mkdir /efi/EFI/Linux #default_uki="/efi/EFI/Linux/arch-linux-lts.efi"
+
 mkinitcpio -P
