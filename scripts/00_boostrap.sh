@@ -6,7 +6,8 @@ if [ "$hostname" = "archiso" ]; then
 	reflector -c TH,SG --sort rate --save /etc/pacman.d/mirrorlist
 else
 	echo "please run this on official archiso"
-	exit 1
+	echo "skip reflector"
+	#exit 1
 fi
 
 if mountpoint -q /mnt; then
@@ -24,6 +25,7 @@ pacstrap -C /etc/pacman.conf -K /mnt \
 	linux-lts-headers\
 	linux-firmware \
 	amd-ucode \
+	iptables-nft \
 	--noconfirm
 
 genfstab -U /mnt >> /mnt/etc/fstab

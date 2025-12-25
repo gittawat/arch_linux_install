@@ -2,11 +2,11 @@
 set -e
 
 cat << EOF > /etc/mkinitcpio.conf
+# vim:set ft=sh:
 MODULES=()
 BINARIES=()
-COMPRESSION="zstd"
-#FILES=(/crypto_keyfile.bin)
-HOOKS=(base systemd autodetect keyboard keymap modconf block sd-encrypt btrfs filesystems fsck)
+FILES=()
+HOOKS=(base systemd autodetect microcode modconf kms keyboard keymap sd-vconsole sd-encrypt block filesystems fsck)
 EOF
 
 cat << EOF > /etc/mkinitcpio.d/linux-lts.preset

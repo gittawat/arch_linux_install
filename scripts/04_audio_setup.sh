@@ -6,7 +6,8 @@ audio_packages=(
 	'pipewire-pulse'
 	'pipewire-jack'
 	'gst-plugin-pipewire'
-	'libpulse wireplumber'
+	'libpulse'
+	'wireplumber'
 )
 
 pacman --noconfirm -S "${audio_packages[@]}"
