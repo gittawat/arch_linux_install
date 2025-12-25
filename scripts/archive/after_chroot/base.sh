@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 echo "Enter hostname:"
 read inputHostname
@@ -15,7 +16,6 @@ echo
 # Compare passwords
 if [ "$password" = "$re_password" ]; then
     echo "Passwords match!"
-    # Now you can use $password1 for further processing
 else
     echo "Passwords do not match. Please try again."
     exit 1
@@ -42,7 +42,7 @@ COMPRESSION="zstd"
 HOOKS=(base systemd autodetect keyboard keymap modconf block sd-encrypt btrfs filesystems fsck)
 EOF
 
-mkinitcpio -p linux
+mkinitcpio -P
 
 pacman -S --noconfirm sbctl efibootmgr 
 pacman -S --noconfirm linux-headers git dialog base-devel 

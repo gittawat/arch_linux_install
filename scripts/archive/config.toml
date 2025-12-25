@@ -20,6 +20,8 @@ localtime = 'Asia/Bangkok'
 base = ['base', 'linux-lts', 'linux-lts-headers', 'linux-firmware']
 base_ucode = ['amd_ucode']
 network = [
+	'iptables-nft'
+	'networkmanager',
 	'network-manager-applet',
 	'iwd',
 	'wireless_tools',
@@ -27,8 +29,6 @@ network = [
 	'wpa_supplicant',
 	'firewalld',
 	'inetutils',
-	'networkmanager',
-	'xdg-utils'
 ]
 audio = [
 	'sof-firmware',
@@ -41,12 +41,14 @@ audio = [
 	'libpulse wireplumber',
 ]
 desktop = [
+	'noto-fonts'
 	'plasma-meta',
 	'konsole',
 	'kate',
 	'dolphin',
 	'ark',
 	'plasma-workspace',
+	'xdg-utils',
 ]
 nvidia_open = [
 	'xorg-server',
@@ -57,3 +59,31 @@ nvidia_open = [
 ]
 utils = ['rsync', 'reflector']
 additional = ['neovim', 'firefox', 'zsh', 'grml-zsh-config']
+
+
+[boot_config]
+mkinitcpio_conf = '''
+MODULES=()
+BINARIES=()
+FILES=()
+HOOKS=(base systemd autodetect microcode modconf kms keyboard keymap sd-vconsole sd-encrypt block filesystems fsck)'''
+linux-lts_preset = '''
+# mkinitcpio preset file for the 'linux-lts' package
+
+#ALL_config="/etc/mkinitcpio.conf"
+ALL_kver="/boot/vmlinuz-linux-lts"
+#ALL_kerneldest="/boot/vmlinuz-linux-lts"
+
+PRESETS=('default')
+#PRESETS=('default' 'fallback')
+
+#default_config="/etc/mkinitcpio.conf"
+default_image="/boot/initramfs-linux-lts.img"
+default_uki="/efi/EFI/Linux/arch-linux-lts.efi"
+#default_options="--splash /usr/share/systemd/bootctl/splash-arch.bmp"
+
+#fallback_config="/etc/mkinitcpio.conf"
+#fallback_image="/boot/initramfs-linux-lts-fallback.img"
+#fallback_uki="/efi/EFI/Linux/arch-linux-lts-fallback.efi"
+#fallback_options="-S autodetect"
+'''
